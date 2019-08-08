@@ -1,4 +1,4 @@
-module fplib
+module github.com/fplib-go/fplib
 
 go 1.12
 
