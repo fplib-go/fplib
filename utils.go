@@ -233,26 +233,26 @@ func String(obj interface{}, defaults ...string) string {
 	if len(defaults) > 0 {
 		result = defaults[0]
 	}
-	if !Empty(obj) {
-		switch v := obj.(type) {
-		case int:
-			result = strconv.Itoa(v)
-		case int64:
-			result = strconv.FormatInt(v, 10)
-		case float32:
-			result = strconv.FormatFloat(float64(v), 'E', -1, 32)
-		case float64:
-			result = strconv.FormatFloat(v, 'E', -1, 64)
-		case int8, int16, int32, uint, uint8, uint16, uint32, uint64:
-			if i, ok := obj.(int64); ok {
-				result = strconv.FormatInt(i, 10)
-			}
-		default:
-			if i, ok := v.(string); ok {
-				result = i
-			}
+
+	switch v := obj.(type) {
+	case int:
+		result = strconv.Itoa(v)
+	case int64:
+		result = strconv.FormatInt(v, 10)
+	case float32:
+		result = strconv.FormatFloat(float64(v), 'E', -1, 32)
+	case float64:
+		result = strconv.FormatFloat(v, 'E', -1, 64)
+	case int8, int16, int32, uint, uint8, uint16, uint32, uint64:
+		if i, ok := obj.(int64); ok {
+			result = strconv.FormatInt(i, 10)
+		}
+	default:
+		if i, ok := v.(string); ok {
+			result = i
 		}
 	}
+
 	return result
 }
 
